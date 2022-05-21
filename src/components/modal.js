@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 
 const Modal = (props) => {
     const showHideClassName = props.show ? "modal display-block" : "modal display-none";   
-    const [todoInput, setToDoInput]  = useState("");        
+    const [todoInput, setToDoInput]  = useState(props.todos);
     async function getTodo() {
         
     }
@@ -10,9 +10,9 @@ const Modal = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         //this.props.addTodo(this.state.todoInput);
-        // Add the new todo to the list
-        setToDoInput(props);
-    };    
+        //setToDoInput(props.todos);
+        console.log(todoInput);
+    };
     
     return (
         <div className={showHideClassName}>
