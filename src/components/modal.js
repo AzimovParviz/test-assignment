@@ -1,22 +1,8 @@
 import React, {useState, useEffect} from "react";
 
 const Modal = (props) => {
-    const showHideClassName = props.show ? "modal display-block" : "modal display-none";
-    
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         todoInput: ""
-    //     };
-    // }
-    const [todoInput, setToDoInput]  = useState("");
-    
-    // const handleChange = (event) => {
-    //     //this.setState({ todoInput: event.target.value });
-    //     setToDoInput(event.target.value);
-    // };
-    // useEffect(handleChange, []);
-    
+    const showHideClassName = props.show ? "modal display-block" : "modal display-none";   
+    const [todoInput, setToDoInput]  = useState("");        
     async function getTodo() {
         
     }
