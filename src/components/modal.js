@@ -1,11 +1,18 @@
 import React, {useState, useEffect} from "react";
 import TodoList from "./todolist.js";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Modal, Button} from 'react-bootstrap';
 
-const Modal = () => {
+const TodoForm = () => {
     const [todos, addTodos] = useState([{title: '',status:'', deadline:''}]);
     const [status, setStatus] = useState("In Progress");
     const [deadline, setDeadline] = useState("");
     const [todoInput, setToDoInput]  = useState("");
+    
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    
     async function getTodo() {
     }
     
@@ -29,14 +36,20 @@ const Modal = () => {
     return (
         <div>
           <TodoList todos={todos}/>
-          <form onSubmit={handleSubmit}>
-            <input
-              id="todo-input"
-              type="text"
-              placeholder="Add todo"
-              value={todoInput}
-              onChange={event => setToDoInput(event.target.value)}
-            />
+          <>
+          <Button onClick={handleShow}>New Todo</Button>
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header>
+              Enter information
+            </Modal.Header>
+            <form onSubmit={handleSubmit}>
+              <input
+                id="todo-input"
+                type="text"
+                placeholder="Add todo"
+                value={todoInput}
+                onChange={event => setToDoInput(event.target.value)}
+              />
             <br/>
             <input
               id="deadline-input"
@@ -45,17 +58,24 @@ const Modal = () => {
               value={deadline}
               onChange={e => setDeadline(e.target.value)}
             />
-            <br/>
-            <select id="status-input" value={status} onChange={handleStatusChange}>
-              <option value="Done">Done</option>
+              <br/>
+              <select id="status-input" value={status} onChange={handleStatusChange}>
+                <option value="Done">Done</option>
               <option value="Not Started">Not Started</option>
-              <option value="In Progress">In progress</option>
-            </select>
-            <input type="submit" value="Submit"/>
-          </form>
+                <option value="In Progress">In progress</option>
+              </select>
+              <input type="submit" value="Submit"/>
+            </form>            
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleClose}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+          </>
         </div>
-                   );
+    );
     
 };
 
-export default Modal;
+export default TodoForm;
