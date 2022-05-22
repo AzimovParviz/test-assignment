@@ -1,21 +1,22 @@
 import React, {useState, useEffect} from "react";
+import TodoList from "./todolist.js";
 
-const Modal = (props) => {
-    const showHideClassName = props.show ? "modal display-block" : "modal display-none";   
-    const [todoInput, setToDoInput]  = useState(props.todos);
+const Modal = () => {
+    const [todos, addTodos] = useState([]);
+    const [todoInput, setToDoInput]  = useState("");
     async function getTodo() {
-        
     }
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        //this.props.addTodo(this.state.todoInput);
-        //setToDoInput(props.todos);
+        addTodos(todos.concat(todoInput));
+        setToDoInput("");
         console.log(todoInput);
     };
     
     return (
-        <div className={showHideClassName}>
+        <div>
+          <TodoList todos={todos}/>
           <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -23,8 +24,8 @@ const Modal = (props) => {
             value={todoInput}
             onChange={event => setToDoInput(event.target.value)}
           />
-          <input type="submit" value="Submit" />
-        </form>
+            <input type="submit" value="Submit"/>
+          </form>
         </div>
     );
     
