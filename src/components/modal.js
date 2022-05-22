@@ -8,15 +8,22 @@ const TodoForm = () => {
     const [status, setStatus] = useState("In Progress");
     const [deadline, setDeadline] = useState("");
     const [todoInput, setToDoInput]  = useState("");
-    
+    /*
+      useStates for handling ToDo object properties
+      */
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    /*
+      useStates for the modal
+      */
     
     const [showEdit, setShowEdit] = useState(false);
     const handleCloseEdit = () => setShowEdit(false);
     const handleShowEdit = () => setShowEdit(true);
-    
+    /*
+      ideas I had for implementing reminder editing
+      */
     const handleSubmit = (event) => {
         event.preventDefault();
         addTodos(todos.concat(
@@ -31,7 +38,9 @@ const TodoForm = () => {
         setDeadline("");
         console.log(todos);
     };
-
+    /*
+      form submit handler for when you create a new todo item
+      */
     const handleEditSubmit = (event) => {
         event.preventDefault();
         addTodos(todos.concat(
@@ -46,18 +55,25 @@ const TodoForm = () => {
         setDeadline("");
         console.log(todos);
     };
-
+    /*
+      theoretical event handler for when the user edits a reminder, not functinal
+      */
     
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
     };
-    
+    /*
+      event handler for the change of status
+      */
     return (
         <div>
           <ul>
             <div onDoubleClick={handleShowEdit}>            
               <TodoList todos={todos}/>
             </div>
+            {/*
+               how I was plannig to implement the reminder editing: double click on the reminder item and it would use the handleShowEdit handler to open the edit modal
+             */}
           </ul>
           <Modal show={showEdit} onHide={handleCloseEdit}>
             <Modal.Header>
@@ -88,6 +104,9 @@ const TodoForm = () => {
               <input type="submit" value="Submit"/>
             </form>
           </Modal>
+          {/*
+             end of the theoretical reminder editor Modal
+            */}
           <>
           <Button onClick={handleShow}>New Todo</Button>
           <Modal show={show} onHide={handleClose}>
@@ -119,9 +138,6 @@ const TodoForm = () => {
               <input type="submit" value="Submit"/>
             </form>
             <Modal.Footer>
-            {/*<Button variant="primary" onClick={handleClose}>
-               Save Changes
-               </Button>*/}
               Click anywhere outside to close this popup
           </Modal.Footer>
         </Modal>
