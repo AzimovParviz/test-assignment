@@ -31,18 +31,22 @@ const Modal = () => {
           <TodoList todos={todos}/>
           <form onSubmit={handleSubmit}>
             <input
+              id="todo-input"
               type="text"
               placeholder="Add todo"
               value={todoInput}
               onChange={event => setToDoInput(event.target.value)}
             />
+            <br/>
             <input
+              id="deadline-input"
               type="text"
               placeholder="set deadline"
               value={deadline}
               onChange={e => setDeadline(e.target.value)}
             />
-            <select value={status} onChange={handleStatusChange}>
+            <br/>
+            <select id="status-input" value={status} onChange={handleStatusChange}>
               <option value="Done">Done</option>
               <option value="Not Started">Not Started</option>
               <option value="In Progress">In progress</option>
