@@ -1,10 +1,10 @@
 import React from "react";
 
-const Todo = props => <li>{props.todo}</li>;
+const Todo = props => <li>{props.todo} status: {props.status}</li>;
 const TodoList = props => (
   <ul>
     {props.todos.map(todo => (
-	<Todo todo={todo} key={todo} />
+	<Todo todo={todo.title} key={todo.title} status={todo.status}/>
     ))}
   </ul>
 );
