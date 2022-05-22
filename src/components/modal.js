@@ -2,8 +2,9 @@ import React, {useState, useEffect} from "react";
 import TodoList from "./todolist.js";
 
 const Modal = () => {
-    const [todos, addTodos] = useState([{title: '',status:''}]);
+    const [todos, addTodos] = useState([{title: '',status:'', deadline:''}]);
     const [status, setStatus] = useState("In Progress");
+    const [deadline, setDeadline] = useState("");
     const [todoInput, setToDoInput]  = useState("");
     async function getTodo() {
     }
@@ -13,7 +14,8 @@ const Modal = () => {
         addTodos(todos.concat(
             {
                 title: todoInput,
-                status: status
+                status: status,
+                deadline: deadline
             }
         ));
         setToDoInput("");
@@ -33,6 +35,12 @@ const Modal = () => {
               placeholder="Add todo"
               value={todoInput}
               onChange={event => setToDoInput(event.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="set deadline"
+              value={deadline}
+              onChange={e => setDeadline(e.target.value)}
             />
             <select value={status} onChange={handleStatusChange}>
               <option value="Done">Done</option>
